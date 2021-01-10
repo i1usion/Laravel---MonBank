@@ -12,7 +12,7 @@
     <br>
 
     <div class="row justify-content-center">
-        <h3>Santander Polska</h3>
+        <h3>{{ $bankName }}</h3>
     </div>
     <br>
 
@@ -36,10 +36,11 @@
 
         Password: <input type = "password" class = "form-control" name = "password" placeholder=""><br>
         @error('password')
-             <span>{{$message}}</span><br>
+             <span>{{ $message }}</span><br>
+             <br>
         @enderror
 
-
+       
 
         <input name = "account" value={{$accountNumber}} hidden>
 

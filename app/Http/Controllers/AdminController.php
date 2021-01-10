@@ -37,6 +37,11 @@ class AdminController extends Controller
 
     public function editUser(Request $req)
     {
+        $req->validate([
+            'name' => 'required |  min:1 | max:30',
+            'balance' => 'required | numeric | min:0 | max:1000000',
+            'isAdmin' => 'required | numeric | min:0 | max:1',
+         ]);
 
         DB::update('update users set name = ?, balance = ?, isAdmin = ? where email = ?', [$req->name, $req->balance, $req->isAdmin, $req->email]);
         return redirect('/admin/users');
@@ -50,6 +55,13 @@ class AdminController extends Controller
 
     public function addUser(Request $req)
     {
+        $req->validate([
+            'email' => 'required |  email',
+            'name' => 'required |  min:1 | max:30',
+            'password' => 'required | min:6 | max:64',
+            'password_confirmation' => 'required | min:6 | max:64',
+         ]);
+
         $email = $req->email;
         $name = $req->name;
         $pass = $req->password;
@@ -78,7 +90,7 @@ class AdminController extends Controller
 
         else
         {
-            return 'incorrect password conf';
+            return redirect()->back()->withErrors(['password_confirmation' => 'Failed password confirmation.']);
         }
         
         

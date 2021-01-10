@@ -20,30 +20,45 @@ class TransferController extends Controller
       ]
    );
 
-    $account = $req->accountNumber;
+   
+   $account = $req->accountNumber;
+
+   $isMonBank = DB::select('select * from users where nrb = ?', [$account]);
+
+
+   if($isMonBank == null)
+   {
+      $bank = 'External bank';
+   }
+   else
+   {
+      $bank = 'MonBank LTD';
+   }
+
     //TODO: add bank checker
-    return view('transferConfirmation', ['accountNumber' => $account]);
+    return view('transferConfirmation', ['accountNumber' => $account], ['bankName' => $bank]);
    }
 
    public function send(Request $req){
 
+      $balance = Auth::user()->balance;
       
       $req->validate([
-         'sum' => "required | numeric | min:1 | max:100000 | lte:$data->balance",
+         'sum' => "required | regex:#^[0-9]+$# | min:1 | max:100000 | lte:$balance",
          'password' => 'required',
       ],
       [
          'sum.required' => 'Summary is empty.',
-         'sum.numeric' => 'Summary value is incorrect.',
          'sum.min' => 'Minimal transaction value is 1.',
          'sum.max' => 'Maximum transaction value is 100000.',
+         'sum.lte' => 'The sum must be less than or equal balance.',
 
       ]
    );
 
 
       $account = $req->account;
-      $sum = $req->amount;
+      $sum = $req->sum;
       $pass = $req->password;
       $data = Auth::user();
 
@@ -69,14 +84,13 @@ class TransferController extends Controller
       }
       else
       {
-         return 'failed summ';
+         return redirect()->back()->withErrors(['sum' => 'Summary value is incorrect']);
       }
    }
       else
       {
 
-
-      return 'failed password';
+         return redirect()->back()->withErrors(['password' => 'Password is incorrect']);
 
       }
      }

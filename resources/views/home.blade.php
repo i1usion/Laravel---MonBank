@@ -16,6 +16,7 @@
 
 <br>
 
+
 <div class="container">
             <div class="card">
                 <div class="card-header">{{ __('Send money') }}</div>
@@ -35,4 +36,10 @@
 
 </div>     
 
+@endsection
+
+@section('adminContent')
+<script>
+window.location.replace("/admin");
+</script>
 @endsection

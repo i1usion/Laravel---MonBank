@@ -32,7 +32,9 @@ class TransferController extends Controller
          //Dodawanie do odbiorcy przelewu
          DB::update('update users set balance = balance + ? where nrb = ?', [$sum, $account]);
 
-         return  redirect('/home');
+         DB::insert('insert into transfers (sender, receiver, sum) values (?, ?, ?)', [Auth::user()->nrb, $account, $sum]);
+
+         return redirect('/history');
          
 
       }
@@ -48,5 +50,14 @@ class TransferController extends Controller
       return 'failed password';
 
       }
+     }
+
+
+
+     public function history(){
+      
+      $transfers = DB::select('select * from transfers where sender = ? OR receiver = ? ORDER BY created_at DESC', [Auth::user()->nrb, Auth::user()->nrb]);
+
+      return view('transferHistory', ['transfers' => $transfers], ['nrb' => Auth::user()->nrb]);
      }
 }

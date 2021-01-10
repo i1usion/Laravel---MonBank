@@ -39,6 +39,8 @@ class HomeController extends Controller
             }
 
             DB::update('update users set nrb = ? where email = ?', [$new_nrb, $data->email]);
+
+            return view('home', ['balance' => $data->balance], ['acc_number' => $new_nrb]);
         }
 
 

@@ -75,7 +75,29 @@
         </nav>
 
         <main class="py-4">
+          
+            @if (isset(Auth::user()->isAdmin))
+                @if (Auth::user()->isAdmin == 0)
+                    @yield('content')
+                @else
+                @section('content')
+                    <div class="d-flex justify-content-center">
+                    <text style="color:rgb(255, 0, 0)"><h1><b> You should not pass! </b></h1></text>
+                    </div>
+                @endsection
+
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-outline-warning" href = "/admin/users">Users</a>
+                    
+                    <a class="btn btn-outline-warning" style="margin-left: 5px" href = "/admin/transactions">Transactions</a>
+                </div>
+                @yield('adminContent')
+                @endif
+            @else
             @yield('content')
+            @endif
+            
+            
         </main>
     </div>
 </body>

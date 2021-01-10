@@ -21,22 +21,30 @@
                 <div class="card-header">{{ __('Send money') }}</div>
 
                 <div class="card-body">
-        <form method="POST" action = "/transfer/send">
 
-        <form action = "send" method="post">
+    <form action = "/transfer/send" method="post">
+
                 {{csrf_field()}}
-        Transfer amount: <input type = "text" class = "form-control" name = "amount" placeholder="0.00 zł"><br>
-        @error('amount')
+
+
+        Transfer amount: <input type = "text" class = "form-control" name = "sum" placeholder="0.00 zł"><br>
+        @error('sum')
              <span>{{$message}}</span><br>
         @enderror
+
+
 
         Password: <input type = "password" class = "form-control" name = "password" placeholder=""><br>
-        @error('amount')
+        @error('password')
              <span>{{$message}}</span><br>
         @enderror
+
+
 
         <input name = "account" value={{$accountNumber}} hidden>
 
+
+        
         <input type = "submit" class = "btn btn-success" value = "Accept"><br><br>
     </form>
    </div>

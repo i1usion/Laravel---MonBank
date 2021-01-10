@@ -22,11 +22,11 @@
                 <div class="card-header">{{ __('Send money') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action = "/transfer/confirm">
+          
 
-        <form action = "send" method="post">
+        <form action = "/transfer/confirm" method="get">
                 {{csrf_field()}}
-        Bank Account Number: <input type = "text" class = "form-control" name = "accountNumber" placeholder="0000000000000000000000000"><br>
+        Bank Account Number: <input type = "text" class = "form-control" name = "accountNumber" placeholder="00000000000000000000000000"><br>
         @error('accountNumber')
              <span>{{$message}}</span><br>
         @enderror

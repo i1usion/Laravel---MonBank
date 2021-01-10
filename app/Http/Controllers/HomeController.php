@@ -31,11 +31,11 @@ class HomeController extends Controller
         {
             if($data->id%2 == 1)
             {
-            $new_nrb = "275001101".("1850375960265049" - $data->id);
+            $new_nrb = "2751001101".("1850375960265049" - $data->id);
             }
             else
             {
-            $new_nrb = "275001101".("1850375960265049" + $data->id);
+            $new_nrb = "2751001101".("1850375960265049" + $data->id);
             }
 
             DB::update('update users set nrb = ? where email = ?', [$new_nrb, $data->email]);

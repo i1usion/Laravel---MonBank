@@ -27,3 +27,9 @@
     </tbody>
 
 @endsection
+
+@section('content')
+<script>
+window.location.replace("/home");
+</script>
+@endsection

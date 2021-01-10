@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('/transfer/confirm', [App\Http\Controllers\TransferController::class, 'confirm']);
+Route::get('/transfer/confirm', [App\Http\Controllers\TransferController::class, 'confirm']);
 
 Route::post('/transfer/send', [App\Http\Controllers\TransferController::class, 'send']);
 
@@ -38,3 +38,5 @@ Route::post('/admin/users/delete', [App\Http\Controllers\AdminController::class,
 Route::post('/admin/users/edit', [App\Http\Controllers\AdminController::class, 'editUser']);
 
 Route::get('/admin/users/new', [App\Http\Controllers\AdminController::class, 'newUser']);
+
+Route::post('/admin/users/new/add', [App\Http\Controllers\AdminController::class, 'addUser']);

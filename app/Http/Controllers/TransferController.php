@@ -9,20 +9,49 @@ use Illuminate\Http\RedirectResponse;
 class TransferController extends Controller
 {
    public function confirm(Request $req){
+
+      $req->validate([
+         'accountNumber' => 'required | numeric | digits_between: 26, 26',
+      ],
+      [
+         'accountNumber.required' => 'Account number is empty.',
+         'accountNumber.numeric' => 'Account number is incorrect.',
+         'accountNumber.digits_between' => 'Account number is incorrect.',
+      ]
+   );
+
     $account = $req->accountNumber;
     //TODO: add bank checker
     return view('transferConfirmation', ['accountNumber' => $account]);
    }
 
    public function send(Request $req){
+
+      
+      $req->validate([
+         'sum' => "required | numeric | min:1 | max:100000 | lte:$data->balance",
+         'password' => 'required',
+      ],
+      [
+         'sum.required' => 'Summary is empty.',
+         'sum.numeric' => 'Summary value is incorrect.',
+         'sum.min' => 'Minimal transaction value is 1.',
+         'sum.max' => 'Maximum transaction value is 100000.',
+
+      ]
+   );
+
+
       $account = $req->account;
       $sum = $req->amount;
       $pass = $req->password;
       $data = Auth::user();
 
+      
+
       if (Hash::check($pass, Auth::user()->password))
       {
-         //TODO: validation (with minus)
+
       if ($data->balance >= $sum) 
       {
          //Odejmowanie od nadawcy przelewu

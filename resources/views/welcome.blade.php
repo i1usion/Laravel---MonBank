@@ -1,3 +1,7 @@
+
+{{-- Landing żeby był --}}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,42 +78,7 @@
 					<rect width="100%" height="100%" style="clip-path: url(#path01);" fill="url(#grad01)" fill-opacity="0.7"></rect>
 				</svg>
 			</section>
-		
-			<!-- <aside class="sponsorsAside text-center pt-4 pb-6 pt-md-9 pb-md-11">
-				<div class="container">
-					<p class="mb-10">Our partners</p>
-					
-					<div class="brandsSlider">
-						
-						<div>
-							<div class="brandLogoWrap">
-								<a href="javascript:void(0);">
-									<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands-1/512/206_Mastercard_Credit_Card_logo_logos-128.png" class="img-fluid" alt="image description">
-								</a>
-							</div>
-						</div>
-						<div>
-							<div class="brandLogoWrap">
-								<a href="javascript:void(0);">
-									<img src="http://placehold.it/150x55" class="img-fluid" alt="image description">
-								</a>
-							</div>
-						</div>
-						<div>
-							<div class="brandLogoWrap">
-								<a href="javascript:void(0);">
-									<img src="http://placehold.it/150x55" class="img-fluid" alt="image description">
-								</a>
-							</div>
-						</div>
-						
-						
-					</div>
-				</div>
-			</aside> -->
-			
-		
-			
+
 		</main>
 		<!-- pageFooter -->
 		<footer id="pageFooter" class="text-center bgw-white py-5">

@@ -10,6 +10,8 @@ class TransferController extends Controller
 {
    public function confirm(Request $req){
 
+      //Walidacja numera konta na stronie głównej
+
       $req->validate([
          'accountNumber' => 'required | numeric | digits_between: 26, 26',
       ],
@@ -25,6 +27,7 @@ class TransferController extends Controller
 
    $isMonBank = DB::select('select * from users where nrb = ?', [$account]);
 
+   //Sprawdzanie nazwy banka
 
    if($isMonBank == null)
    {
@@ -35,13 +38,14 @@ class TransferController extends Controller
       $bank = 'MonBank LTD';
    }
 
-    //TODO: add bank checker
     return view('transferConfirmation', ['accountNumber' => $account], ['bankName' => $bank]);
    }
 
    public function send(Request $req){
 
       $balance = Auth::user()->balance;
+
+      //Walidacja wasłania transakcji
       
       $req->validate([
          'sum' => "required | regex:#^[0-9]+$# | min:1 | max:100000 | lte:$balance",

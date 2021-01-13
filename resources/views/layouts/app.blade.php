@@ -76,12 +76,28 @@
 
         <main class="py-4">
           
+            {{-- Sprowdzanie czy użytkownik jest zalogowanym --}}
+
             @if (isset(Auth::user()->isAdmin))
+
+            {{-- Sprowdzanie czy użytkownik jest adminem --}}
+
                 @if (Auth::user()->isAdmin == 0)
+
+                {{-- Jeżeli nie jest, generujemy zwykłą stronę --}}
+
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-primary" href = "/home"> Main </a>
+                    
+                    <a class="btn btn-primary" style="margin-left: 5px" href = "/history"> Transactions </a>
+                </div>
+                <br>
+
                     @yield('content')
                     
                 @else
                 
+                {{-- Jeżeli jest, generujemy admin stronę --}}
 
                 <div class="d-flex justify-content-center">
                     <a class="btn btn-outline-warning" href = "/admin/users">Users</a>
@@ -91,6 +107,9 @@
                 @yield('adminContent')
                 @endif
             @else
+
+            {{-- Jeżeli nie jest zalogowanym, generujemy zwykłą stronę --}}
+
             @yield('content')
             @endif
             

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+{{-- Rejestracja nowego użytkownika --}}
+
 @section('adminContent')
 
 <div class="container">

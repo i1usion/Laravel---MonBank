@@ -39,8 +39,8 @@ class AdminController extends Controller
     {
         $req->validate([
             'name' => 'required |  min:1 | max:30',
-            'balance' => 'required | numeric | min:0 | max:1000000',
-            'isAdmin' => 'required | numeric | min:0 | max:1',
+            'balance' => 'required | regex:#^[0-9]+$# | min:0 | max:1000000',
+            'isAdmin' => 'required | regex:#^[0-9]+$# | min:0 | max:1',
          ]);
 
         DB::update('update users set name = ?, balance = ?, isAdmin = ? where email = ?', [$req->name, $req->balance, $req->isAdmin, $req->email]);
@@ -73,6 +73,8 @@ class AdminController extends Controller
 
             $query = DB::select('select id from users where email = ?', [$email]);
             $id = $query[0]->id;
+
+            //Generowanie numera konta użytkownika
 
             if($id%2 == 1)
             {

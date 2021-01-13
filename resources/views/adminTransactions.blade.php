@@ -2,6 +2,8 @@
 
 @section('adminContent')
 
+{{-- Generowanie tabeli tranzakcyj wszystkich użytkowników banku --}}
+
 <br>
 <table class="table table-striped table-dark">
     <thead>
